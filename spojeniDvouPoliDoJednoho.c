@@ -12,9 +12,9 @@ int spoj_pole(const int *a, int delka_a, const int *b, int delka_b, int **vystup
 
     for (int i = 0; i < delka_a + delka_b; i++){
         if (i < delka_a)
-            (*vystup[i]) = a[i];
+            (*vystup)[i] = a[i];
         else
-            (*vystup[i]) = b[i];
+            (*vystup)[i] = b[i - delka_a];
     }
 
     return 1;
@@ -38,7 +38,7 @@ int main(void){
 
     printf("Zadejte prvky prvniho pole:\n");
     for (int i = 0; i < delka_a; i++){
-        if(scanf("%d", a[i]) != 1){
+        if(scanf("%d", &a[i]) != 1){
             free(a);
             printf("Nespravny vstup.\n");
             return 1;
@@ -61,7 +61,7 @@ int main(void){
 
     printf("Zadejte prvky druheho pole:\n");
     for (int i = 0; i < delka_b; i++){
-        if(scanf("%d", b[i]) != 1){
+        if(scanf("%d", &b[i]) != 1){
             free(a);
             free(b);
             printf("Nespravny vstup.\n");
