@@ -3,11 +3,11 @@
 
 int spoj_pole(const int *a, int delka_a, const int *b, int delka_b, int **vystup){
 
-    if(a == NULL || b == NULL || delka_a <= 0 || delka_b <= 0)
+    if(a == NULL || b == NULL || delka_a <= 0 || delka_b <= 0 || vystup == NULL)
         return 0;
 
     *vystup = malloc((delka_a + delka_b) * sizeof(**vystup));
-    if (vystup == NULL)
+    if (*vystup == NULL)
         return 0;
 
     for (int i = 0; i < delka_a + delka_b; i++){
@@ -70,8 +70,12 @@ int main(void){
     }
 
     if(spoj_pole(a, delka_a, b, delka_b, &vystup)){
-        for (int i = 0; i < delka_a + delka_b; i++)
-            printf("%d ", vystup[i]);
+        for (int i = 0; i < delka_a + delka_b; i++){
+            if(i < delka_a + delka_b - 1)
+                printf("%d ", vystup[i]);
+            else
+                printf("%d\n", vystup[i]);
+        }
         free(vystup);
         free(a);
         free(b);
