@@ -3,8 +3,19 @@
 
 int spoj_pole(const int *a, int delka_a, const int *b, int delka_b, int **vystup){
 
+    if(a == NULL || b == NULL || delka_a <= 0 || delka_b <= 0)
+        return 0;
 
+    *vystup = malloc((delka_a + delka_b) * sizeof(**vystup));
+    if (vystup == NULL)
+        return 0;
 
+    for (int i = 0; i < delka_a + delka_b; i++){
+        if (i < delka_a)
+            (*vystup[i]) = a[i];
+        else
+            (*vystup[i]) = b[i];
+    }
 
     return 1;
 }
@@ -58,8 +69,19 @@ int main(void){
         }
     }
 
-
-
+    if(spoj_pole(a, delka_a, b, delka_b, &vystup)){
+        for (int i = 0; i < delka_a + delka_b; i++)
+            printf("%d ", vystup[i]);
+        free(vystup);
+        free(a);
+        free(b);
+    }
+    else {
+        printf("Nespravny vstup.\n");
+        free(a);
+        free(b);
+        return 1;
+    }
 
 
 
